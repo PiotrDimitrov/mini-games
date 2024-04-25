@@ -1,6 +1,9 @@
 #include <iostream>
+#include "game.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    srand(time(0));
+    sudokuTable s;
+    s.construct();
+    s.show();
 }
