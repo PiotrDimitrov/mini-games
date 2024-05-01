@@ -65,6 +65,7 @@ void sudokuTable::construct() {
     }
 
     //fill non-corner sectors
+    /*
     for (int sec = 1; sec <= 7; sec+=2)
     {
         for (int i = 0; i < 3; i++) {
@@ -81,7 +82,8 @@ void sudokuTable::construct() {
             }
 
         }
-    }
+    } */
+    fillSector(0 , 3);
 
 }
 
@@ -107,10 +109,16 @@ int* sudokuTable::randomSet()
 
 bool sudokuTable::safeCell(int number, int row, int column) {
     if (table[row][column] != 0) { return false; }
+    int sec = 3*(row/3) + (column/3);
     for (int i = 0; i < 9; i++)
     {
         if (table[i][column] == number) { return false; }
         if (table [row][i] == number) { return false; }
+    }
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            if(table[i + (sec/3) * 3][j + (sec%3) * 3] == number) {return false;}
+        }
     }
     return true;
 }
@@ -158,3 +166,20 @@ int sudokuTable::candidate::unique() {
     return this->set[c];
 }
 
+bool sudokuTable::fillSector(int i, int j) {
+    if (i == 8 && j == 9) {return true;}
+    if (j == 9) { j =  0; i++; }
+    if (table[i][j] > 0) {return fillSector(i, j+1);}
+    int step = rand () % 9 + 1;
+    for (int it = 1; it <= 9; it++)
+    {
+        int num = (step + it) % 9;
+        if (num == 0) {num = 9;}
+        if (safeCell(num, i, j)) {
+            table[i][j] = num;
+            if (fillSector(i, j+1)) {return true;}
+            table[i][j] = 0;
+        }
+    }
+    return false;
+}
