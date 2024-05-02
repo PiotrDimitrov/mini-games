@@ -1,7 +1,7 @@
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
 
-#include "sudokuTable.h"
+#include "sudoku.h"
 
 class game {
 public:

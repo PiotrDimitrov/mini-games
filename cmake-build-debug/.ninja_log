@@ -42,3 +42,9 @@
 12	597	7361366908662544	CMakeFiles/sudoku.dir/main.cpp.obj	c407dffe63afb3b9
 3	633	7361366909041653	CMakeFiles/sudoku.dir/sudokuTable.cpp.obj	e94fc87c2895f1c4
 633	773	7361366910407873	sudoku.exe	9421505b987a6c46
+3	1436	7363515679814376	CMakeFiles/sudoku.dir/sudokuTable.cpp.obj	e94fc87c2895f1c4
+1437	2483	7363515690258725	sudoku.exe	9421505b987a6c46
+19	718	7363531695867704	CMakeFiles/sudoku.dir/game.cpp.obj	24f4be3e96b9b044
+12	734	7363531696037252	CMakeFiles/sudoku.dir/sudokuTable.cpp.obj	e94fc87c2895f1c4
+4	832	7363531697015075	CMakeFiles/sudoku.dir/main.cpp.obj	c407dffe63afb3b9
+832	1074	7363531699378758	sudoku.exe	9421505b987a6c46
