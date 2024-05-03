@@ -6,7 +6,7 @@ game::game() {
     sudoku solved;
     solved.construct();
     sudoku unsolved = solved;
-
+    unsolved.puzzle(50);
     unsolved.show();
 }
 

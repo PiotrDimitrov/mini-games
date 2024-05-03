@@ -3,22 +3,45 @@
 
 void sudoku::show()
 {
+    char nextSymbol;
     std::cout << "________________________________________\n\n";
     for (int i = 0; i < 9; i++)
     {
-        for (int j = 0; j < 9; j++)
-            if (j % 3 == 2)
-            {
+        for (int j = 0; j < 9; j++) {
+            if (table[i][j] <= 0) { nextSymbol = ' '; }
+            else { nextSymbol = char(table[i][j] + 48); }
+
+            if (j % 3 == 2) {
+                std::cout << nextSymbol << "  |  ";
+            } else {
+                std::cout << nextSymbol << "   ";
+            }
+        }
+            std::cout << std::endl;
+            if (i % 3 == 2) {
+                std::cout << "________________________________________\n";
+            }
+
+        std::cout << std::endl;
+    }
+}
+
+void sudoku::show1()
+{
+    std::cout << "________________________________________\n\n";
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++) {
+            if (j % 3 == 2) {
                 std::cout << this->table[i][j] << "  |  ";
-            } else
-            {
+            } else {
                 std::cout << this->table[i][j] << "   ";
             }
-        std::cout << std::endl;
-        if (i % 3 == 2)
-        {
-            std::cout << "________________________________________\n";
         }
+            std::cout << std::endl;
+            if (i % 3 == 2) {
+                std::cout << "________________________________________\n";
+            }
 
         std::cout << std::endl;
     }
@@ -74,9 +97,17 @@ void sudoku::construct() {
     fillSector(0 , 3);
 }
 
-void puzzle()
-{
-    
+void sudoku::puzzle(int difficulty) {
+    while (difficulty > 0)
+    {
+        int i = rand() % 9;
+        int j = rand() % 9;
+        if (table[i][j] < 0) {continue;}
+        if (notAloneCell(i,j)) {
+            difficulty--;
+            table[i][j] *= (-1);
+        }
+    }
 }
 
 bool sudoku::fillSector(int i, int j) {
@@ -132,6 +163,17 @@ bool sudoku::safeCell(int number, int row, int column) {
     return true;
 }
 
+bool sudoku::notAloneCell(int row, int column)
+{
+    int sum1 = 0;
+    int sum2 = 0;
+    for (int i = 0; i < 9; i++){
+        sum1 += table[i][column];
+        sum2 += table[row][i];
+    }
+    if (sum1 == table[row][column] || sum2 == table[row][column]){return false;}
+    return true;
+}
 
 
 
