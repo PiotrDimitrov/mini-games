@@ -14,7 +14,7 @@ public:
 public: //CHANGE TO PRIVATE LATER!
     int** table;
     void construct();
-    void puzzle(int difficulty);
+    int puzzle(int difficulty);
     int* randomSet();
     bool safeCell(int number, int row, int column);
     bool fillSector(int i, int j);

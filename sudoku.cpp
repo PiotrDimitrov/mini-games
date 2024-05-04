@@ -98,7 +98,8 @@ void sudoku::construct() {
     fillSector(0 , 3);
 }
 
-void sudoku::puzzle(int difficulty) {
+int sudoku::puzzle(int difficulty) {
+    int empty = 0;
     int counterRows[9];
     int counterColumns[9];
     for (int i = 0 ; i < 9; i++) {
@@ -118,7 +119,9 @@ void sudoku::puzzle(int difficulty) {
         counterColumns[j] += 1;
         difficulty--;
         table[i][j] *= (-1);
+        empty++;
     }
+    return empty;
 }
 
 bool sudoku::fillSector(int i, int j) {
