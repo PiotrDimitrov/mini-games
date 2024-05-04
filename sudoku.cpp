@@ -1,4 +1,5 @@
 #include "sudoku.h"
+#include "game.h"
 #include <iostream>
 
 void sudoku::show()
@@ -98,15 +99,25 @@ void sudoku::construct() {
 }
 
 void sudoku::puzzle(int difficulty) {
-    while (difficulty > 0)
+    int counterRows[9];
+    int counterColumns[9];
+    for (int i = 0 ; i < 9; i++) {
+        counterRows[i] = 0;
+        counterColumns[i] = 0;
+    }
+    int stop = 0;
+    while (difficulty > 0 && stop < 250000)
     {
+        stop++;
         int i = rand() % 9;
         int j = rand() % 9;
-        if (table[i][j] < 0) {continue;}
-        if (notAloneCell(i,j)) {
-            difficulty--;
-            table[i][j] *= (-1);
-        }
+        if (table[i][j] < 0) {continue; }
+        if (counterRows[i] >= 6) {continue;}
+        if (counterColumns[j] >= 6) {continue;}
+        counterRows[i] += 1;
+        counterColumns[j] += 1;
+        difficulty--;
+        table[i][j] *= (-1);
     }
 }
 
@@ -163,17 +174,7 @@ bool sudoku::safeCell(int number, int row, int column) {
     return true;
 }
 
-bool sudoku::notAloneCell(int row, int column)
-{
-    int sum1 = 0;
-    int sum2 = 0;
-    for (int i = 0; i < 9; i++){
-        sum1 += table[i][column];
-        sum2 += table[row][i];
-    }
-    if (sum1 == table[row][column] || sum2 == table[row][column]){return false;}
-    return true;
-}
+
 
 
 

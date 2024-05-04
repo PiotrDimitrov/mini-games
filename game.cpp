@@ -1,15 +1,17 @@
+#include "sudoku.h"
 #include "game.h"
 #include <iostream>
 
 game::game() {
     srand(time(0));
-    sudoku solved;
-    solved.construct();
-    sudoku unsolved = solved;
-    unsolved.puzzle(50);
-    unsolved.show();
+
+    int difficulty = enter();
+    if (difficulty != 5) { play(difficulty);}
+
 }
 
 game::~game() {
 
 }
+
+

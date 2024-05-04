@@ -18,7 +18,6 @@ public: //CHANGE TO PRIVATE LATER!
     int* randomSet();
     bool safeCell(int number, int row, int column);
     bool fillSector(int i, int j);
-    bool notAloneCell(int row, int column);
     friend class game;
 };
 
