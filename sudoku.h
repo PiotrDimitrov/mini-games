@@ -11,7 +11,7 @@ public:
     ~sudoku();
     void show();
     void show1();
-public: //CHANGE TO PRIVATE LATER!
+private:
     int** table;
     void construct();
     int puzzle(int difficulty);

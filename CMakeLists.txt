@@ -7,4 +7,5 @@ add_executable(sudoku main.cpp
         game.h
         sudoku.h
         sudoku.cpp
-        game.cpp)
+        game.cpp
+        record.cpp)

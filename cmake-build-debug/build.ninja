@@ -67,6 +67,12 @@ build CMakeFiles/sudoku.dir/game.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C
   OBJECT_DIR = CMakeFiles\sudoku.dir
   OBJECT_FILE_DIR = CMakeFiles\sudoku.dir
 
+build CMakeFiles/sudoku.dir/record.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C$:/Users/User/Desktop/CPP/sudoku/record.cpp || cmake_object_order_depends_target_sudoku
+  DEP_FILE = CMakeFiles\sudoku.dir\record.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\sudoku.dir
+  OBJECT_FILE_DIR = CMakeFiles\sudoku.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target sudoku
@@ -75,7 +81,7 @@ build CMakeFiles/sudoku.dir/game.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C
 #############################################
 # Link the executable sudoku.exe
 
-build sudoku.exe: CXX_EXECUTABLE_LINKER__sudoku_Debug CMakeFiles/sudoku.dir/main.cpp.obj CMakeFiles/sudoku.dir/sudoku.cpp.obj CMakeFiles/sudoku.dir/game.cpp.obj
+build sudoku.exe: CXX_EXECUTABLE_LINKER__sudoku_Debug CMakeFiles/sudoku.dir/main.cpp.obj CMakeFiles/sudoku.dir/sudoku.cpp.obj CMakeFiles/sudoku.dir/game.cpp.obj CMakeFiles/sudoku.dir/record.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\sudoku.dir

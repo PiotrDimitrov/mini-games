@@ -107,14 +107,16 @@ int sudoku::puzzle(int difficulty) {
         counterColumns[i] = 0;
     }
     int stop = 0;
+    int maxEmpRow = 6; int maxEmpCol = 6;
+    if (difficulty >= 52) {maxEmpRow += (rand() % 2); maxEmpCol += (rand() % 2);}
     while (difficulty > 0 && stop < 250000)
     {
         stop++;
         int i = rand() % 9;
         int j = rand() % 9;
-        if (table[i][j] < 0) {continue; }
-        if (counterRows[i] >= 6) {continue;}
-        if (counterColumns[j] >= 6) {continue;}
+        if (table[i][j] < 0) {continue;}
+        if (counterRows[i] >= maxEmpRow) {continue;}
+        if (counterColumns[j] >= maxEmpCol) {continue;}
         counterRows[i] += 1;
         counterColumns[j] += 1;
         difficulty--;
