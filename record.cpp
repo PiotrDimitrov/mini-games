@@ -3,12 +3,14 @@
 #include "sudoku.h"
 #include "game.h"
 
-record::record() {
+record::record() {  //default constructor
     difficulty = -1;
     time = 0;
 }
 
 int record::getTime(std::string str) {
+    //receives string consisting of "difficulty" "time" format and returns time in integer
+    //example: "2 130s" -> 130
     int index = 0;
     while (true){
         if (str[index + 1] == 's'){
@@ -16,7 +18,8 @@ int record::getTime(std::string str) {
         }
         index++;
     }
-    int counter = 0; int res = 0;
+    int counter = 0;
+    int res = 0;
     while (str[index] != ' '){
         int power = 1;
         for (int i = 0; i < counter; i++){
@@ -29,17 +32,19 @@ int record::getTime(std::string str) {
 }
 
 int record::getDiff(std::string str){
+    //receives string consisting of "difficulty" "time" format and returns difficulty in integer
+    //example "1 30s" -> 1
     return (str[0] - '0')*1;
 }
 
 void record::checkBest(record r){
+    //checks times through all records in a file and compares with current solving time
     std::fstream file("records.txt", std::ios::in | std::ios::out | std::ios::app);
     if (!file.is_open())
     {
         std::cout << "Error opening file" << std::endl;
         return;
     }
-
     std::string line;
     int bestTime = 32760;
     while (std::getline(file, line))
@@ -55,6 +60,8 @@ void record::checkBest(record r){
 }
 
 record::~record() {
+    //default destructor writes data from record into file at the end of the program
+    //writes data in format "difficulty" "time""s" (ex: "2 140s")
     if (difficulty < 0) {
         std::cout << "Sorry, your record can not be processed (code 1)\n";
         return;

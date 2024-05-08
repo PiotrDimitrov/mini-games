@@ -2,11 +2,10 @@
 #include "game.h"
 #include <iostream>
 #include <chrono>
-#include <fstream>
 
 game::game() {
+    //game starting
     srand(time(0));
-
     int difficulty = enter();
     if (difficulty != 5) { play(difficulty);}
 }
@@ -15,8 +14,8 @@ game::~game() {
 
 }
 
-
 int game::enter() {
+    //function to determine difficulty of current game
     char input;
     std::cout << "  -= SUDOKU GAME =-  " << std::endl;
     std::cout << "Choose your difficulty: " << std::endl;
@@ -35,14 +34,13 @@ int game::enter() {
             return (int(input) - 48);
         }
     }
-    return 1;
 }
 
 void game::play(int diff) {
+    //main game process
     rec.difficulty = diff;
     sudoku sudokuTable;
     diff = (diff - 1) * 4 + 40;
-    diff = 1;
     sudokuTable.construct();
     int cells = sudokuTable.puzzle(diff);
     sudokuTable.show();
@@ -66,7 +64,5 @@ void game::play(int diff) {
     rec.time = solveTime;
     std::cout << "Time: " << solveTime << " seconds" << std::endl;
     std::cout << "Wrong guesses: " << errors << std::endl;
-
     record::checkBest(this->rec);
-
 }

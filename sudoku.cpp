@@ -27,27 +27,6 @@ void sudoku::show()
     }
 }
 
-void sudoku::show1()
-{
-    std::cout << "________________________________________\n\n";
-    for (int i = 0; i < 9; i++)
-    {
-        for (int j = 0; j < 9; j++) {
-            if (j % 3 == 2) {
-                std::cout << this->table[i][j] << "  |  ";
-            } else {
-                std::cout << this->table[i][j] << "   ";
-            }
-        }
-            std::cout << std::endl;
-            if (i % 3 == 2) {
-                std::cout << "________________________________________\n";
-            }
-
-        std::cout << std::endl;
-    }
-}
-
 sudoku::sudoku()
 {
     this->table = new int*[9];

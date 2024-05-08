@@ -3,7 +3,7 @@
 #include "sudoku.h"
 #include <iostream>
 
-class record {
+class record { //class helps to write game records into a file
 public:
     record();
     ~record();

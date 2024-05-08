@@ -10,17 +10,14 @@ public:
     sudoku(const sudoku& other);
     ~sudoku();
     void show();
-    void show1();
 private:
     int** table;
     void construct();
     int puzzle(int difficulty);
-    int* randomSet();
+    static int* randomSet();
     bool safeCell(int number, int row, int column);
     bool fillSector(int i, int j);
     friend class game;
 };
-
-
 
 #endif //SUDOKU_SUDOKU_H

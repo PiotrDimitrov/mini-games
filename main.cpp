@@ -2,5 +2,5 @@
 #include "game.h"
 
 int main() {
-game newGame;
+game newGame;   //create game instance to start game
 }
