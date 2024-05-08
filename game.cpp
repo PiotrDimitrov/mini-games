@@ -67,21 +67,6 @@ void game::play(int diff) {
     std::cout << "Time: " << solveTime << " seconds" << std::endl;
     std::cout << "Wrong guesses: " << errors << std::endl;
 
+    record::checkBest(this->rec);
 
-    std::fstream file("records.txt", std::ios::in | std::ios::out | std::ios::app);
-    if (!file.is_open())
-    {
-        std::cout << "Error opening file" << std::endl;
-        return;
-    }
-
-    std::string line;
-    int bestTime = 32760;
-    while (std::getline(file, line))
-    {
-        if (rec.getDiff(line) != rec.difficulty){continue;}
-        if (bestTime > rec.getTime(line)) {bestTime = rec.getTime(line);}
-    }
-    if (bestTime > rec.time) {std::cout << "New best. Your previous best result is " << bestTime << " seconds" << std::endl;}
-    file.close();
 }
