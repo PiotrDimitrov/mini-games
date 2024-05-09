@@ -12,7 +12,7 @@ public:
     void show();
 private:
     int** table;
-    void construct();
+    void construct(bool diagonals = true);
     int puzzle(int difficulty);
     static int* randomSet();
     bool safeCell(int number, int row, int column);

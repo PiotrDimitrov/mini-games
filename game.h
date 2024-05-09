@@ -23,6 +23,7 @@ public:
 private:
     static int enter();
     void play(int diff);
+    static void solver();
     record rec;
 };
 #endif //SUDOKU_GAME_H

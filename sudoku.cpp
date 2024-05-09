@@ -58,23 +58,25 @@ sudoku::sudoku(const sudoku& other)
     }
 }
 
-void sudoku::construct() {
+void sudoku::construct(bool diagonals) {
     //initially fill three diagonal sectors
-    for (int sec = 0; sec <= 8; sec+=4)
-    {
-        int* numSet = randomSet();
-
-        for (int i = 0; i < 3; i++)
+    if (diagonals) {
+        for (int sec = 0; sec <= 8; sec+=4)
         {
-            for (int j = 0; j < 3; j++)
+            int* numSet = randomSet();
+
+            for (int i = 0; i < 3; i++)
             {
-                table[i + (sec/3) * 3][j + (sec%3) * 3] = numSet[i*3 + j];
+                for (int j = 0; j < 3; j++)
+                {
+                    table[i + (sec/3) * 3][j + (sec%3) * 3] = numSet[i*3 + j];
+                }
             }
+            delete [] numSet; numSet = nullptr;
         }
-        delete [] numSet; numSet = nullptr;
     }
 
-    fillSector(0 , 3);
+    fillSector(0 , 0);
 }
 
 int sudoku::puzzle(int difficulty) {
