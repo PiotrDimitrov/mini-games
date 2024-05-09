@@ -58,7 +58,7 @@ void game::play(int diff) {
         std::cin >> r >> c >> n;
         if (n == -1) {return;}
         r--; c--;
-        if (r > 8 || c >> 8 || r < 0 || c < 0 || n < 1 || n > 9)
+        if (r > 8 || c > 8 || r < 0 || c < 0 || n < 1 || n > 9)
         {std::cout << "Invalid input" << std::endl; continue;}
         if (sudokuTable.table[r][c] > 0) {std::cout << "Cell isn't empty\n"; continue;}
         if (sudokuTable.table[r][c] == (-1)*n) {sudokuTable.table[r][c] *= (-1); cells--;}
