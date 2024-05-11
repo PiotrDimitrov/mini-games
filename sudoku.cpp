@@ -6,20 +6,20 @@ void sudoku::show()
 {
     char nextSymbol;
     std::cout << "________________________________________\n\n";
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < fullSize; i++)
     {
-        for (int j = 0; j < 9; j++) {
+        for (int j = 0; j < fullSize; j++) {
             if (table[i][j] <= 0) { nextSymbol = ' '; }
             else { nextSymbol = char(table[i][j] + 48); }
 
-            if (j % 3 == 2) {
+            if (j % secSize == secSize-1) {
                 std::cout << nextSymbol << "  |  ";
             } else {
                 std::cout << nextSymbol << "   ";
             }
         }
             std::cout << std::endl;
-            if (i % 3 == 2) {
+            if (i % secSize == secSize-1) {
                 std::cout << "________________________________________\n";
             }
 
@@ -29,16 +29,33 @@ void sudoku::show()
 
 sudoku::sudoku()
 {
-    this->table = new int*[9];
-    for (int i = 0; i < 9; i++)
+    secSize = 3; fullSize = secSize * secSize;
+    this->table = new int*[fullSize];
+    for (int i = 0; i < fullSize; i++)
     {
-        this->table[i] = new int[9] {0,0,0,0,0,0,0,0,0};
+        this->table[i] = new int[fullSize];
+        for (int j = 0; j < fullSize; j++){
+            table[i][j] = 0;
+        }
+    }
+}
+
+sudoku::sudoku(int size)
+{
+    secSize = size; fullSize = secSize * secSize;
+    this->table = new int*[fullSize];
+    for (int i = 0; i < fullSize; i++)
+    {
+        this->table[i] = new int[fullSize];
+        for (int j = 0; j < fullSize; j++){
+            table[i][j] = 0;
+        }
     }
 }
 
 sudoku::~sudoku()
 {
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < fullSize; i++)
     {
         delete [] this->table[i];
     }
@@ -47,11 +64,12 @@ sudoku::~sudoku()
 
 sudoku::sudoku(const sudoku& other)
 {
-    this->table = new int*[9];
-    for (int i = 0; i < 9; i++)
+    secSize = other.secSize; fullSize = other.fullSize;
+    this->table = new int*[fullSize];
+    for (int i = 0; i < fullSize; i++)
     {
-        this->table[i] = new int[9];
-        for (int j = 0; j < 9; j++)
+        this->table[i] = new int[fullSize];
+        for (int j = 0; j < fullSize; j++)
         {
             this->table[i][j] = other.table[i][j];
         }
@@ -61,15 +79,15 @@ sudoku::sudoku(const sudoku& other)
 void sudoku::construct(bool diagonals) {
     //initially fill three diagonal sectors
     if (diagonals) {
-        for (int sec = 0; sec <= 8; sec+=4)
+        for (int sec = 0; sec <= fullSize-1; sec+=(secSize+1))
         {
             int* numSet = randomSet();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < secSize; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < secSize; j++)
                 {
-                    table[i + (sec/3) * 3][j + (sec%3) * 3] = numSet[i*3 + j];
+                    table[i + (sec/secSize) * secSize][j + (sec%secSize) * secSize] = numSet[i*secSize + j];
                 }
             }
             delete [] numSet; numSet = nullptr;
@@ -81,20 +99,21 @@ void sudoku::construct(bool diagonals) {
 
 int sudoku::puzzle(int difficulty) {
     int empty = 0;
-    int counterRows[9];
-    int counterColumns[9];
-    for (int i = 0 ; i < 9; i++) {
+    int counterRows[fullSize];
+    int counterColumns[fullSize];
+    for (int i = 0 ; i < fullSize; i++) {
         counterRows[i] = 0;
         counterColumns[i] = 0;
     }
     int stop = 0;
-    int maxEmpRow = 6; int maxEmpCol = 6;
+    int maxEmpRow = fullSize - 3; int maxEmpCol = fullSize - 3;
     if (difficulty >= 52) {maxEmpRow += (rand() % 2); maxEmpCol += (rand() % 2);}
+    if (fullSize == 16) {difficulty *= 2;} //TO DO
     while (difficulty > 0 && stop < 250000)
     {
         stop++;
-        int i = rand() % 9;
-        int j = rand() % 9;
+        int i = rand() % fullSize;
+        int j = rand() % fullSize;
         if (table[i][j] < 0) {continue;}
         if (counterRows[i] >= maxEmpRow) {continue;}
         if (counterColumns[j] >= maxEmpCol) {continue;}
@@ -108,14 +127,14 @@ int sudoku::puzzle(int difficulty) {
 }
 
 bool sudoku::fillSector(int i, int j) {
-    if (i == 8 && j == 9) {return true;}
-    if (j == 9) { j =  0; i++; }
+    if (i == fullSize-1 && j == fullSize) {return true;}
+    if (j == fullSize) { j =  0; i++; }
     if (table[i][j] > 0) {return fillSector(i, j+1);}
-    int step = rand () % 9 + 1;
-    for (int it = 1; it <= 9; it++)
+    int step = rand () % fullSize + 1;
+    for (int it = 1; it <= fullSize; it++)
     {
-        int num = (step + it) % 9;
-        if (num == 0) {num = 9;}
+        int num = (step + it) % fullSize;
+        if (num == 0) {num = fullSize;}
         if (safeCell(num, i, j)) {
             table[i][j] = num;
             if (fillSector(i, j+1)) {return true;}
@@ -127,11 +146,15 @@ bool sudoku::fillSector(int i, int j) {
 
 int* sudoku::randomSet()
 {
-    int numSet[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int* res = new int[9];
-    for (int i = 0; i < 9; i++)
+    int numSet[fullSize];
+    for (int i = 0; i < fullSize; i++)
     {
-        int x = rand() % (9 - i) + 1;
+        numSet[i] = i+1;
+    }
+    int* res = new int[fullSize];
+    for (int i = 0; i < fullSize; i++)
+    {
+        int x = rand() % (fullSize - i) + 1;
         int counter = -1;
         while(x > 0)
         {
@@ -146,15 +169,15 @@ int* sudoku::randomSet()
 
 bool sudoku::safeCell(int number, int row, int column) {
     if (table[row][column] != 0) { return false; }
-    int sec = 3*(row/3) + (column/3);
-    for (int i = 0; i < 9; i++)
+    int sec = secSize*(row/secSize) + (column/secSize);
+    for (int i = 0; i < fullSize; i++)
     {
         if (table[i][column] == number) { return false; }
         if (table [row][i] == number) { return false; }
     }
-    for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            if(table[i + (sec/3) * 3][j + (sec%3) * 3] == number) {return false;}
+    for (int i = 0; i < secSize; i++){
+        for (int j = 0; j < secSize; j++){
+            if(table[i + (sec/secSize) * secSize][j + (sec%secSize) * secSize] == number) {return false;}
         }
     }
     return true;

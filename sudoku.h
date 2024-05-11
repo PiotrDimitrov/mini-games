@@ -7,14 +7,17 @@ class sudoku
 {
 public:
     sudoku();
+    sudoku(int size);
     sudoku(const sudoku& other);
     ~sudoku();
     void show();
 private:
     int** table;
+    int secSize;
+    int fullSize;
     void construct(bool diagonals = true);
     int puzzle(int difficulty);
-    static int* randomSet();
+    int* randomSet();
     bool safeCell(int number, int row, int column);
     bool fillSector(int i, int j);
     friend class game;

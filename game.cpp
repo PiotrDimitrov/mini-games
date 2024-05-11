@@ -45,7 +45,9 @@ int game::enter() {
 void game::play(int diff) {
     //main game process
     rec.difficulty = diff;
-    sudoku sudokuTable;
+    int size;
+    if (diff == 5) {size = 4;} else {size = 3;};
+    sudoku sudokuTable(size);
     diff = (diff - 1) * 4 + 40;
     sudokuTable.construct();
     int cells = sudokuTable.puzzle(diff);
@@ -53,12 +55,13 @@ void game::play(int diff) {
     std::cout << "Fill numbers in table in format: row column number (integers)" << std::endl;
     int r, c, n; int errors = 0;
     time_t start, end;
+    int sz = sudokuTable.fullSize;
     time(&start);
     while (cells > 0){
         std::cin >> r >> c >> n;
         if (n == -1) {return;}
         r--; c--;
-        if (r > 8 || c > 8 || r < 0 || c < 0 || n < 1 || n > 9)
+        if (r > (sz-1) || c > (sz-1) || r < 0 || c < 0 || n < 1 || n > sz)
         {std::cout << "Invalid input" << std::endl; continue;}
         if (sudokuTable.table[r][c] > 0) {std::cout << "Cell isn't empty\n"; continue;}
         if (sudokuTable.table[r][c] == (-1)*n) {sudokuTable.table[r][c] *= (-1); cells--;}
