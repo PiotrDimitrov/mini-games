@@ -20,6 +20,7 @@ private:
     int* randomSet();
     bool safeCell(int number, int row, int column);
     bool fillSector(int i, int j);
+    static char defineSymbol(int x);
     friend class game;
 };
 

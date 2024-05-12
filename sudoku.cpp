@@ -5,13 +5,14 @@
 void sudoku::show()
 {
     char nextSymbol;
-    std::cout << "________________________________________\n\n";
+    for (int i = 0; i < 4*fullSize+4; i++){std::cout << "_";}
+    std::cout << std::endl;
     for (int i = 0; i < fullSize; i++)
     {
         for (int j = 0; j < fullSize; j++) {
-            if (table[i][j] <= 0) { nextSymbol = ' '; }
-            else { nextSymbol = char(table[i][j] + 48); }
-
+            //if (table[i][j] <= 0) { nextSymbol = ' '; }
+            //else { nextSymbol = char(table[i][j] + 48); }
+            nextSymbol = defineSymbol(table[i][j]);
             if (j % secSize == secSize-1) {
                 std::cout << nextSymbol << "  |  ";
             } else {
@@ -20,9 +21,9 @@ void sudoku::show()
         }
             std::cout << std::endl;
             if (i % secSize == secSize-1) {
-                std::cout << "________________________________________\n";
+                for (int i = 0; i < 4*fullSize+4; i++){std::cout << "_";}
+                std::cout << std::endl;
             }
-
         std::cout << std::endl;
     }
 }
@@ -183,7 +184,24 @@ bool sudoku::safeCell(int number, int row, int column) {
     return true;
 }
 
-
-
-
-
+char sudoku::defineSymbol(int x) {
+    if (x <= 0) {return ' ';}
+    if (x <= 9) {return char('0' + x);}
+    switch (x) {
+        case 10:
+            return 'A';
+        case 11:
+            return 'B';
+        case 12:
+            return 'C';
+        case 13:
+            return 'D';
+        case 14:
+            return 'E';
+        case 15:
+            return 'F';
+        case 16:
+            return 'G';
+    }
+    return '?';
+}
