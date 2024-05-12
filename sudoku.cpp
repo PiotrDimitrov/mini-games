@@ -93,10 +93,8 @@ void sudoku::construct(bool diagonals) {
             delete [] numSet; numSet = nullptr;
         }
     }
-
     fillSector(0 , 0);
 }
-
 int sudoku::puzzle(int difficulty) {
     int empty = 0;
     int counterRows[fullSize];
@@ -105,12 +103,38 @@ int sudoku::puzzle(int difficulty) {
         counterRows[i] = 0;
         counterColumns[i] = 0;
     }
-    int stop = 0;
-    int maxEmpRow = fullSize - 3; int maxEmpCol = fullSize - 3;
-    if (difficulty >= 52) {maxEmpRow += (rand() % 2); maxEmpCol += (rand() % 2);}
-    if (fullSize == 16) {difficulty *= 2;} //TO DO
-    while (difficulty > 0 && stop < 250000)
-    {
+    int stop = 0; int maxEmpRow; int maxEmpCol;
+    switch (difficulty) {
+        case 1:
+            difficulty = 42;
+            maxEmpRow = maxEmpCol = 6;
+            break;
+        case 2:
+            difficulty = 46;
+            maxEmpRow = maxEmpCol = 6;
+            break;
+        case 3:
+            difficulty = 50;
+            maxEmpRow = maxEmpCol = 6;
+            break;
+        case 4:
+            difficulty = 54;
+            maxEmpRow = maxEmpCol = 7;
+            break;
+        case 5:
+            difficulty = 130;
+            maxEmpRow = maxEmpCol = 8;
+            break;
+        case 6:
+            difficulty = 164;
+            maxEmpRow = maxEmpCol = 10;
+            break;
+        case 7:
+            difficulty = 180;
+            maxEmpRow = maxEmpCol = 12;
+            break;
+    }
+    while (difficulty > 0 && stop < 250000) {
         stop++;
         int i = rand() % fullSize;
         int j = rand() % fullSize;

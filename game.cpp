@@ -6,10 +6,10 @@
 game::game() {
     //game starting
     srand(time(0));
-    int difficulty = enter();
-    if (difficulty >= 7) { return;}
-    if (difficulty == 6) {solver();}
-    if (difficulty <= 5) { play(difficulty);}
+    difficulty = enter();
+    if (difficulty >= 9) { return;}
+    if (difficulty == 8) {solver();}
+    else { play(); }
 }
 
 game::~game() {
@@ -18,37 +18,39 @@ game::~game() {
 
 int game::enter() {
     //function to determine difficulty of current game
-    char input;
+    int input;
     std::cout << "  -= SUDOKU GAME =-  " << std::endl;
     std::cout << "Choose your game mode: " << std::endl;
-    std::cout << "1. Easy" << std::endl;
-    std::cout << "2. Medium" << std::endl;
-    std::cout << "3. Hard" << std::endl;
-    std::cout << "4. Insane" << std::endl;
-    std::cout << "5. Giant 16x16" << std::endl;
-    std::cout << "6. Solve my sudoku" << std::endl;
-    std::cout << "7. Quit the game" << std::endl;
+    std::cout << "1. Easy 9x9" << std::endl;
+    std::cout << "2. Medium 9x9" << std::endl;
+    std::cout << "3. Hard 9x9" << std::endl;
+    std::cout << "4. Insane 9x9" << std::endl;
+    std::cout << "5. Easy 16x16" << std::endl;
+    std::cout << "6. Medium 16x16" << std::endl;
+    std::cout << "7. Hard 16x16" << std::endl;
+    std::cout << "8. Solve my sudoku" << std::endl;
+    std::cout << "9. Quit the game" << std::endl;
     while (true)
     {
         std::cin >> input;
-        if (int(input) > 55 || int(input) < 49)
+        if (input < 1 || input > 9)
         {
             std::cout << "Enter valid value!" << std::endl;
         } else {
-            return (int(input) - 48);
+            break;
         }
     }
+    return input;
 }
 
-void game::play(int diff) {
+void game::play() {
     //main game process
-    rec.difficulty = diff;
+    rec.difficulty = this->difficulty;
     int size;
-    if (diff == 5) {size = 4;} else {size = 3;};
+    if (difficulty >= 5) {size = 4;} else {size = 3;};
     sudoku sudokuTable(size);
-    diff = (diff - 1) * 4 + 40;
     sudokuTable.construct();
-    int cells = sudokuTable.puzzle(diff);
+    int cells = sudokuTable.puzzle(difficulty);
     sudokuTable.show();
     std::cout << "Fill numbers in table in format: row column number (integers)" << std::endl;
     int r, c, n; int errors = 0;
