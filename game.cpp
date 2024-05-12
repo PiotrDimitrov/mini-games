@@ -7,7 +7,7 @@ game::game() {
     //game starting
     srand(time(0));
     int difficulty = enter();
-    if (difficulty == 7) { return;}
+    if (difficulty >= 7) { return;}
     if (difficulty == 6) {solver();}
     if (difficulty <= 5) { play(difficulty);}
 }
