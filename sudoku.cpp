@@ -1,5 +1,4 @@
 #include "sudoku.h"
-#include "game.h"
 #include <iostream>
 
 void sudoku::show()

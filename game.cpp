@@ -40,8 +40,6 @@ int game::enter() {
     }
 }
 
-
-
 void game::play(int diff) {
     //main game process
     rec.difficulty = diff;
