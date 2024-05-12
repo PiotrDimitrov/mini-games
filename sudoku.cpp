@@ -1,5 +1,4 @@
 #include "sudoku.h"
-#include "game.h"
 #include <iostream>
 
 void sudoku::show()
@@ -94,10 +93,8 @@ void sudoku::construct(bool diagonals) {
             delete [] numSet; numSet = nullptr;
         }
     }
-
     fillSector(0 , 0);
 }
-
 int sudoku::puzzle(int difficulty) {
     int empty = 0;
     int counterRows[fullSize];
@@ -137,9 +134,7 @@ int sudoku::puzzle(int difficulty) {
             maxEmpRow = maxEmpCol = 12;
             break;
     }
-
-    while (difficulty > 0 && stop < 250000)
-    {
+    while (difficulty > 0 && stop < 250000) {
         stop++;
         int i = rand() % fullSize;
         int j = rand() % fullSize;
