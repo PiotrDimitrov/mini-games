@@ -57,7 +57,7 @@ void game::play(int diff) {
     time(&start);
     while (cells > 0){
         std::cin >> r >> c >> n;
-        if (n == -1) {return;}
+        if (n < -1 || r < -1 || c < -1) {return;}
         r--; c--;
         if (r > (sz-1) || c > (sz-1) || r < 0 || c < 0 || n < 1 || n > sz)
         {std::cout << "Invalid input" << std::endl; continue;}

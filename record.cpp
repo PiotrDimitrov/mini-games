@@ -66,6 +66,10 @@ record::~record() {
         std::cout << "Sorry, your record can not be processed (code 1)\n";
         return;
     }
+    if (time <= 0) {
+        std::cout << "Sorry, your record can not be processed (code 5)\n";
+        return;
+    }
     std::fstream fs;
     fs.open("records.txt", std::fstream::in | std::fstream::out | std::fstream::app);
     if (!fs.is_open()) {std::cout << "Sorry, your record can not be processed (code 2)\n"; return;}
