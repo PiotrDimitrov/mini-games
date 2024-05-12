@@ -22,7 +22,8 @@ public:
     ~game();
 private:
     static int enter();
-    void play(int diff);
+    int difficulty;
+    void play();
     static void solver();
     record rec;
 };

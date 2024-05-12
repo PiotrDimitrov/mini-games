@@ -6,10 +6,10 @@
 game::game() {
     //game starting
     srand(time(0));
-    int difficulty = enter();
+    difficulty = enter();
     if (difficulty >= 9) { return;}
     if (difficulty == 8) {solver();}
-    else { play(difficulty); }
+    else { play(); }
 }
 
 game::~game() {
@@ -45,15 +45,14 @@ int game::enter() {
 
 
 
-void game::play(int diff) {
+void game::play() {
     //main game process
-    rec.difficulty = diff;
+    rec.difficulty = this->difficulty;
     int size;
-    if (diff >= 5) {size = 4;} else {size = 3;};
+    if (difficulty >= 5) {size = 4;} else {size = 3;};
     sudoku sudokuTable(size);
-    diff = (diff - 1) * 4 + 40;
     sudokuTable.construct();
-    int cells = sudokuTable.puzzle(diff);
+    int cells = sudokuTable.puzzle(difficulty);
     sudokuTable.show();
     std::cout << "Fill numbers in table in format: row column number (integers)" << std::endl;
     int r, c, n; int errors = 0;
