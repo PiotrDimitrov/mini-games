@@ -83,7 +83,7 @@ void game::play() {
 
 void game::solver() {
     sudoku userSudoku;
-    int n =  3;
+    int n = 3;
     std::string sudokuLine;
     std::cout << "Enter 9 numbers in format of string: xxxxxxxxx" << std::endl;
     std::cout << "Enter each out of 9 line to set sudoku and type 0 instead of empty cells\n";
@@ -92,6 +92,11 @@ void game::solver() {
         if (sudokuLine.length() != 9) {i--; std::cout << "Invalid format\n"; continue;}
         for (int j = 0; j < n*n; j++) {
             userSudoku.table[i][j] = int(sudokuLine[j] - '0');
+        }
+    }
+    for (int i = 0; i < n*n; i++){
+        for (int j = 0; j < n*n; j++){
+            if (!userSudoku.safeCell(i ,j)){std::cout << "Your table is not valid\n"; return;}
         }
     }
     userSudoku.construct(false);

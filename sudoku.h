@@ -19,6 +19,7 @@ private:
     int puzzle(int difficulty);
     int* randomSet();
     bool safeCell(int number, int row, int column);
+    bool safeCell(int row, int column);
     bool fillSector(int i, int j);
     static char defineSymbol(int x);
     friend class game;
