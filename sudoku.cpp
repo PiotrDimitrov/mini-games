@@ -207,6 +207,24 @@ bool sudoku::safeCell(int number, int row, int column) {
     return true;
 }
 
+bool sudoku::safeCell(int row, int column) {
+    if (table[row][column] == 0) { return true; }
+    int number = table[row][column];
+    int sec = secSize*(row/secSize) + (column/secSize);
+    for (int i = 0; i < fullSize; i++)
+    {
+        if (table[i][column] == number && i != row) { return false; }
+        if (table [row][i] == number && i != column) { return false; }
+    }
+    for (int i = 0; i < secSize; i++){
+        for (int j = 0; j < secSize; j++){
+            if (i + (sec/secSize) * secSize == row && j + (sec%secSize) * secSize == column) {continue;}
+            if(table[i + (sec/secSize) * secSize][j + (sec%secSize) * secSize] == number) {return false;}
+        }
+    }
+    return true;
+}
+
 char sudoku::defineSymbol(int x) {
     if (x <= 0) {return ' ';}
     if (x <= 9) {return char('0' + x);}
