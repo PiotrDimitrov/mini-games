@@ -34,7 +34,7 @@ int record::getTime(std::string str) {
 int record::getDiff(std::string str){
     //receives string consisting of "difficulty" "time" format and returns difficulty in integer
     //example "1 30s" -> 1
-    return (str[0] - '0')*1;
+    return int(str[0] - '0');
 }
 
 void record::checkBest(record r){
