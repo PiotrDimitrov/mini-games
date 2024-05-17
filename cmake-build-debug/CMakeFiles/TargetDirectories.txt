@@ -1,3 +1,0 @@
-C:/Users/User/Desktop/CPP/sudoku/cmake-build-debug/CMakeFiles/sudoku.dir
-C:/Users/User/Desktop/CPP/sudoku/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/User/Desktop/CPP/sudoku/cmake-build-debug/CMakeFiles/rebuild_cache.dir
