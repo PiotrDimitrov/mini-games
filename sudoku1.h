@@ -23,6 +23,8 @@ private:
     bool fillSector(int i, int j);
     static char defineSymbol(int x);
     friend class game;
+    void solver();
+    void play();
 };
 
 #endif //SUDOKU_SUDOKU_H

@@ -1,7 +1,7 @@
-#include "sudoku.h"
+#include "sudoku1.h"
 #include <iostream>
 
-void sudoku::show()
+void sudoku1::show()
 {
     char nextSymbol;
     for (int i = 0; i < 4*fullSize+4; i++){std::cout << "_";}
@@ -27,7 +27,7 @@ void sudoku::show()
     }
 }
 
-sudoku::sudoku()
+sudoku1::sudoku1()
 {
     secSize = 3; fullSize = secSize * secSize;
     this->table = new int*[fullSize];
@@ -40,7 +40,7 @@ sudoku::sudoku()
     }
 }
 
-sudoku::sudoku(int size)
+sudoku1::sudoku1(int size)
 {
     secSize = size; fullSize = secSize * secSize;
     this->table = new int*[fullSize];
@@ -53,7 +53,7 @@ sudoku::sudoku(int size)
     }
 }
 
-sudoku::~sudoku()
+sudoku1::~sudoku1()
 {
     for (int i = 0; i < fullSize; i++)
     {
@@ -62,7 +62,7 @@ sudoku::~sudoku()
     delete [] this->table;
 }
 
-sudoku::sudoku(const sudoku& other)
+sudoku1::sudoku1(const sudoku1& other)
 {
     secSize = other.secSize; fullSize = other.fullSize;
     this->table = new int*[fullSize];
@@ -76,7 +76,7 @@ sudoku::sudoku(const sudoku& other)
     }
 }
 
-void sudoku::construct(bool diagonals) {
+void sudoku1::construct(bool diagonals) {
     //initially fill three diagonal sectors
     if (diagonals) {
         for (int sec = 0; sec <= fullSize-1; sec+=(secSize+1))
@@ -95,7 +95,7 @@ void sudoku::construct(bool diagonals) {
     }
     fillSector(0 , 0);
 }
-int sudoku::puzzle(int difficulty) {
+int sudoku1::puzzle(int difficulty) {
     int empty = 0;
     int counterRows[fullSize];
     int counterColumns[fullSize];
@@ -150,7 +150,7 @@ int sudoku::puzzle(int difficulty) {
     return empty;
 }
 
-bool sudoku::fillSector(int i, int j) {
+bool sudoku1::fillSector(int i, int j) {
     if (i == fullSize-1 && j == fullSize) {return true;}
     if (j == fullSize) { j =  0; i++; }
     if (table[i][j] > 0) {return fillSector(i, j+1);}
@@ -168,7 +168,7 @@ bool sudoku::fillSector(int i, int j) {
     return false;
 }
 
-int* sudoku::randomSet()
+int* sudoku1::randomSet()
 {
     int numSet[fullSize];
     for (int i = 0; i < fullSize; i++)
@@ -191,7 +191,7 @@ int* sudoku::randomSet()
     return res;
 }
 
-bool sudoku::safeCell(int number, int row, int column) {
+bool sudoku1::safeCell(int number, int row, int column) {
     if (table[row][column] != 0) { return false; }
     int sec = secSize*(row/secSize) + (column/secSize);
     for (int i = 0; i < fullSize; i++)
@@ -207,7 +207,7 @@ bool sudoku::safeCell(int number, int row, int column) {
     return true;
 }
 
-bool sudoku::safeCell(int row, int column) {
+bool sudoku1::safeCell(int row, int column) {
     if (table[row][column] == 0) { return true; }
     int number = table[row][column];
     int sec = secSize*(row/secSize) + (column/secSize);
@@ -225,7 +225,7 @@ bool sudoku::safeCell(int row, int column) {
     return true;
 }
 
-char sudoku::defineSymbol(int x) {
+char sudoku1::defineSymbol(int x) {
     if (x <= 0) {return ' ';}
     if (x <= 9) {return char('0' + x);}
     switch (x) {
@@ -245,4 +245,8 @@ char sudoku::defineSymbol(int x) {
             return 'G';
     }
     return '?';
+}
+
+void sudoku1::play(){
+
 }
