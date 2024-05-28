@@ -1,6 +1,6 @@
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
-#include "sudoku.h"
+#include "sudoku1.h"
 #include <iostream>
 
 class record { //class helps to write game records into a file
@@ -9,7 +9,8 @@ public:
     ~record();
 private:
     double time;
-    int difficulty;
+    int mode;
+    int submode;
     static int getTime(std::string str);
     static int getDiff(std::string str);
     static void checkBest(record r);
@@ -21,10 +22,13 @@ public:
     game();
     ~game();
 private:
+    int mode;
+    int submode;
     static int enter();
     int difficulty;
     void play();
     static void solver();
     record rec;
+    void showMenu();
 };
 #endif //SUDOKU_GAME_H

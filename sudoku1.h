@@ -1,15 +1,15 @@
-#ifndef SUDOKU_SUDOKU_H
-#define SUDOKU_SUDOKU_H
+#ifndef SUDOKU_SUDOKU1_H
+#define SUDOKU_SUDOKU1_H
 
 #include "game.h"
 
-class sudoku
+class sudoku1
 {
 public:
-    sudoku();
-    sudoku(int size);
-    sudoku(const sudoku& other);
-    ~sudoku();
+    sudoku1();
+    sudoku1(int size);
+    sudoku1(const sudoku1& other);
+    ~sudoku1();
     void show();
 private:
     int** table;
@@ -27,4 +27,4 @@ private:
     void play();
 };
 
-#endif //SUDOKU_SUDOKU_H
+#endif //SUDOKU_SUDOKU1_H

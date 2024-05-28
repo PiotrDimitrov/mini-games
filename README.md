@@ -37,14 +37,14 @@ Ensure you have the following software installed on your system:
 1. Clone the repository to your local machine:
 
     ```sh
-    git clone PiotrDimitrovhttps://github.com/PiotrDimitrov/sudoku.git
-    cd sudoku-generator-solver
+    git clone PiotrDimitrovhttps://github.com/PiotrDimitrov/sudoku1.git
+    cd sudoku1-generator-solver
     ```
 
 2. Compile the project:
 
     ```sh
-    g++ -o sudoku main.cpp SudokuGenerator.cpp SudokuSolver.cpp
+    g++ -o sudoku1 main.cpp SudokuGenerator.cpp SudokuSolver.cpp
     ```
 
 *Note: Replace `main.cpp`, `SudokuGenerator.cpp`, and `SudokuSolver.cpp` with the actual source file names if different.*
@@ -56,7 +56,7 @@ To use the Sudoku Generator and Solver:
 1. Execute the compiled program:
 
     ```sh
-    ./sudoku
+    ./sudoku1
     ```
 
 2. Follow the on-screen prompts to:

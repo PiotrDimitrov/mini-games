@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "sudoku.h"
+#include "sudoku1.h"
 #include "game.h"
 
 record::record() {  //default constructor

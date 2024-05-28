@@ -1,19 +1,48 @@
-#include "sudoku.h"
+#include "sudoku1.h"
 #include "game.h"
 #include <iostream>
 #include <chrono>
 
+//game::game() {
+//    //game starting
+//    srand(time(0));
+//    difficulty = enter();
+//    if (difficulty >= 9) { return;}
+//    if (difficulty == 8) {solver();}
+//    else { play(); }
+//}
+
 game::game() {
-    //game starting
-    srand(time(0));
-    difficulty = enter();
-    if (difficulty >= 9) { return;}
-    if (difficulty == 8) {solver();}
-    else { play(); }
+
 }
 
 game::~game() {
 
+}
+
+void game::showMenu(){
+    std::cout << "1. Sudoku" << std::endl;
+    std::cout << "2. Wordly" << std::endl;
+    std::cout << "3. 15 Puzzle" << std::endl;
+    std::cout << "4. " << std::endl;
+
+    std::string input;
+    std::cin >> input;
+    std::string temp = "";
+    int counter = 0;
+    for (int i = 0; i < input.length(); i++){
+        if (input[i] <= '9' && input[i] >= '0'){
+            temp = temp + input[i];
+            counter++;
+        }
+        if (counter >= 2) {break;}
+    }
+    input = temp;
+    if (input.length() == 1){
+        mode = (input[0] -'0');
+    } else if (input.length() == 2){
+        mode = (input[1] -'0') + (input[0] -'0')*10;
+    } else {std::cout << "Invalid input\n"; mode = -1;}
 }
 
 int game::enter() {
@@ -28,7 +57,7 @@ int game::enter() {
     std::cout << "5. Easy 16x16" << std::endl;
     std::cout << "6. Medium 16x16" << std::endl;
     std::cout << "7. Hard 16x16" << std::endl;
-    std::cout << "8. Solve my sudoku" << std::endl;
+    std::cout << "8. Solve my sudoku1" << std::endl;
     std::cout << "9. Quit the game" << std::endl;
     while (true)
     {
@@ -45,10 +74,10 @@ int game::enter() {
 
 void game::play() {
     //main game process
-    rec.difficulty = this->difficulty;
+    //rec.difficulty = this->difficulty;
     int size;
     if (difficulty >= 5) {size = 4;} else {size = 3;};
-    sudoku sudokuTable(size);
+    sudoku1 sudokuTable(size);
     sudokuTable.construct();
     int cells = sudokuTable.puzzle(difficulty);
     sudokuTable.show();
@@ -81,11 +110,11 @@ void game::play() {
 }
 
 void game::solver() {
-    sudoku userSudoku;
+    sudoku1 userSudoku;
     int n = 3;
     std::string sudokuLine;
     std::cout << "Enter 9 numbers in format of string: xxxxxxxxx" << std::endl;
-    std::cout << "Enter each out of 9 line to set sudoku and type 0 instead of empty cells\n";
+    std::cout << "Enter each out of 9 line to set sudoku1 and type 0 instead of empty cells\n";
     for (int i = 0; i < n*n; i++){
         std::cin >> sudokuLine;
         if (sudokuLine.length() != 9) {i--; std::cout << "Invalid format\n"; continue;}

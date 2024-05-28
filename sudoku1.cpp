@@ -95,6 +95,7 @@ void sudoku1::construct(bool diagonals) {
     }
     fillSector(0 , 0);
 }
+
 int sudoku1::puzzle(int difficulty) {
     int empty = 0;
     int counterRows[fullSize];
