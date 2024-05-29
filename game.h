@@ -29,6 +29,7 @@ private:
     void play();
     static void solver();
     record rec;
-    void showMenu();
+    void defineMode();
+    void defineSubMode();
 };
 #endif //SUDOKU_GAME_H

@@ -20,7 +20,7 @@ game::~game() {
 
 }
 
-void game::showMenu(){
+void game::defineMode(){
     std::cout << "1. Sudoku" << std::endl;
     std::cout << "2. Wordly" << std::endl;
     std::cout << "3. 15 Puzzle" << std::endl;
@@ -43,6 +43,29 @@ void game::showMenu(){
     } else if (input.length() == 2){
         mode = (input[1] -'0') + (input[0] -'0')*10;
     } else {std::cout << "Invalid input\n"; mode = -1;}
+}
+
+void game::defineSubMode() {
+    switch (mode) {
+        case 1:
+            std::cout << "Classic 9x9: " << std::endl;
+            std::cout << "1. Easy 9x9" << std::endl;
+            std::cout << "2. Medium 9x9" << std::endl;
+            std::cout << "3. Hard 9x9" << std::endl;
+            std::cout << "4. Insane 9x9" << std::endl;
+            std::cout << std::endl << "Classic 16x16: " << std::endl;
+            std::cout << "5. Easy 16x16" << std::endl;
+            std::cout << "6. Medium 16x16" << std::endl;
+            std::cout << std::endl << "7. Hard 16x16" << std::endl;
+            std::cout <<  "Multi-sudoku: " << std::endl;
+            std::cout << "8. Double-doku" << std::endl;
+            std::cout << "9. Triple-doku" << std::endl;
+            std::cout << "10. Samurai sudoku" << std::endl;
+            std::cout << "11. Sohei sudoku" << std::endl;
+            std::cout << "12. Double-doku column" << std::endl;
+            std::cout << "13. Triple-doku column" << std::endl;
+
+    }
 }
 
 int game::enter() {
@@ -130,3 +153,5 @@ void game::solver() {
     userSudoku.construct(false);
     userSudoku.show();
 }
+
+

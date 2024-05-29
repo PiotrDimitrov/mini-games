@@ -55,8 +55,8 @@ build CMakeFiles/sudoku.dir/main.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C
   OBJECT_DIR = CMakeFiles\sudoku.dir
   OBJECT_FILE_DIR = CMakeFiles\sudoku.dir
 
-build CMakeFiles/sudoku.dir/sudoku.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C$:/Users/User/Desktop/CPP/mini-games/sudoku.cpp || cmake_object_order_depends_target_sudoku
-  DEP_FILE = CMakeFiles\sudoku.dir\sudoku.cpp.obj.d
+build CMakeFiles/sudoku.dir/sudoku1.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C$:/Users/User/Desktop/CPP/mini-games/sudoku1.cpp || cmake_object_order_depends_target_sudoku
+  DEP_FILE = CMakeFiles\sudoku.dir\sudoku1.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\sudoku.dir
   OBJECT_FILE_DIR = CMakeFiles\sudoku.dir
@@ -73,11 +73,17 @@ build CMakeFiles/sudoku.dir/record.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug
   OBJECT_DIR = CMakeFiles\sudoku.dir
   OBJECT_FILE_DIR = CMakeFiles\sudoku.dir
 
-build CMakeFiles/sudoku.dir/games/sudoku.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C$:/Users/User/Desktop/CPP/mini-games/games/sudoku.cpp || cmake_object_order_depends_target_sudoku
-  DEP_FILE = CMakeFiles\sudoku.dir\games\sudoku.cpp.obj.d
+build CMakeFiles/sudoku.dir/games/sudoku/sudoku.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C$:/Users/User/Desktop/CPP/mini-games/games/sudoku/sudoku.cpp || cmake_object_order_depends_target_sudoku
+  DEP_FILE = CMakeFiles\sudoku.dir\games\sudoku\sudoku.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\sudoku.dir
-  OBJECT_FILE_DIR = CMakeFiles\sudoku.dir\games
+  OBJECT_FILE_DIR = CMakeFiles\sudoku.dir\games\sudoku
+
+build CMakeFiles/sudoku.dir/games/sudoku/classicSudoku.cpp.obj: CXX_COMPILER__sudoku_unscanned_Debug C$:/Users/User/Desktop/CPP/mini-games/games/sudoku/classicSudoku.cpp || cmake_object_order_depends_target_sudoku
+  DEP_FILE = CMakeFiles\sudoku.dir\games\sudoku\classicSudoku.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\sudoku.dir
+  OBJECT_FILE_DIR = CMakeFiles\sudoku.dir\games\sudoku
 
 
 # =============================================================================
@@ -87,7 +93,7 @@ build CMakeFiles/sudoku.dir/games/sudoku.cpp.obj: CXX_COMPILER__sudoku_unscanned
 #############################################
 # Link the executable sudoku.exe
 
-build sudoku.exe: CXX_EXECUTABLE_LINKER__sudoku_Debug CMakeFiles/sudoku.dir/main.cpp.obj CMakeFiles/sudoku.dir/sudoku.cpp.obj CMakeFiles/sudoku.dir/game.cpp.obj CMakeFiles/sudoku.dir/record.cpp.obj CMakeFiles/sudoku.dir/games/sudoku.cpp.obj
+build sudoku.exe: CXX_EXECUTABLE_LINKER__sudoku_Debug CMakeFiles/sudoku.dir/main.cpp.obj CMakeFiles/sudoku.dir/sudoku1.cpp.obj CMakeFiles/sudoku.dir/game.cpp.obj CMakeFiles/sudoku.dir/record.cpp.obj CMakeFiles/sudoku.dir/games/sudoku/sudoku.cpp.obj CMakeFiles/sudoku.dir/games/sudoku/classicSudoku.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\sudoku.dir

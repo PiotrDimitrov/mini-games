@@ -11,5 +11,7 @@ add_executable(
         game.cpp
         record.cpp
         header.h
-        games/sudoku.h
-        games/sudoku.cpp)
+        games/sudoku/sudoku.h
+        games/sudoku/sudoku.cpp
+        games/sudoku/classicSudoku.h
+        games/sudoku/classicSudoku.cpp)
