@@ -4,13 +4,16 @@
 
 classicSudoku::classicSudoku() {
 sdk = new sudoku(size);
-sdk->diagonals();
-sdk->construct();
-sdk->puzzle(difficulty);
+//sdk->diagonals();
+//sdk->construct();
+//sdk->puzzle(difficulty);
 }
 
-classicSudoku::classicSudoku(int x) {
-
+classicSudoku::classicSudoku(int size) {
+    this->size = size;
+    sdk = new sudoku(this->size);
+    sdk->diagonals();
+    sdk->construct();
 }
 
 classicSudoku::~classicSudoku() {
@@ -26,7 +29,6 @@ void classicSudoku::play() {
     time_t start, end;
     int sz = sdk->fullSize;
     time(&start);
-
     while (cells > 0){
         std::cin >> input;
         if (input == "Quit" || input == "quit") {return;}
@@ -46,7 +48,7 @@ void classicSudoku::play() {
     double solveTime = difftime(end, start);
     std::cout << "Time: " << solveTime << " seconds" << std::endl;
     std::cout << "Wrong guesses: " << errors << std::endl;
-    
+
 /*
     //main game process
     //rec.difficulty = this->difficulty;

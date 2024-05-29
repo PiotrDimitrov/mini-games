@@ -1,6 +1,7 @@
 #ifndef SUDOKU_SUDOKU_H
 #define SUDOKU_SUDOKU_H
 #include <vector>
+#include "classicSudoku.h"
 
 class sudoku {
 public:
@@ -25,6 +26,7 @@ public:
     bool safeCell(int row, int column);
     int* randomSet();
     static char defineSymbol(int x);
+    void clear();
 };
 
 #endif //SUDOKU_SUDOKU_H

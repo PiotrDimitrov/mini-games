@@ -6,10 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(
         sudoku main.cpp
         game.h
-        sudoku1.h
-        sudoku1.cpp
+        useless/sudoku1.h
+        useless/sudoku1.cpp
         game.cpp
-        record.cpp
+        useless/record.cpp
         header.h
         games/sudoku/sudoku.h
         games/sudoku/sudoku.cpp

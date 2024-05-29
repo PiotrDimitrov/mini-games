@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include "sudoku1.h"
-#include "game.h"
+#include "../game.h"
 
 record::record() {  //default constructor
-    difficulty = -1;
+    //difficulty = -1;
     time = 0;
 }
 
@@ -49,7 +49,7 @@ void record::checkBest(record r){
     int bestTime = 32760;
     while (std::getline(file, line))
     {
-        if (r.getDiff(line) != r.difficulty){continue;}
+        //if (r.getDiff(line) != r.difficulty){continue;}
         if (bestTime > r.getTime(line)) {bestTime = r.getTime(line);}
     }
     if (bestTime > r.time) {
@@ -62,10 +62,10 @@ void record::checkBest(record r){
 record::~record() {
     //default destructor writes data from record into file at the end of the program
     //writes data in format "difficulty" "time""s" (ex: "2 140s")
-    if (difficulty < 0) {
-        std::cout << "Sorry, your record can not be processed (code 1)\n";
-        return;
-    }
+//    if (difficulty < 0) {
+//        std::cout << "Sorry, your record can not be processed (code 1)\n";
+//        return;
+//    }
     if (time <= 0) {
         std::cout << "Sorry, your record can not be processed (code 5)\n";
         return;
@@ -73,6 +73,6 @@ record::~record() {
     std::fstream fs;
     fs.open("records.txt", std::fstream::in | std::fstream::out | std::fstream::app);
     if (!fs.is_open()) {std::cout << "Sorry, your record can not be processed (code 2)\n"; return;}
-    fs << difficulty << " " << time << "s" << std::endl;
+    //fs << difficulty << " " << time << "s" << std::endl;
     fs.close();
 }

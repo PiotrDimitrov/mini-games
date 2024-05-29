@@ -1,6 +1,6 @@
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
-#include "sudoku1.h"
+#include "useless/sudoku1.h"
 #include <iostream>
 
 class record { //class helps to write game records into a file
@@ -22,6 +22,7 @@ public:
     game();
     ~game();
 private:
+public:
     int mode;
     int submode;
     static int enter();
@@ -31,5 +32,6 @@ private:
     record rec;
     void defineMode();
     void defineSubMode();
+    void launch();
 };
 #endif //SUDOKU_GAME_H

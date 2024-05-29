@@ -2,10 +2,12 @@
 #define SUDOKU_CLASSICSUDOKU_H
 #include "sudoku.h"
 
+class sudoku;
+
 class classicSudoku {
 public:
     classicSudoku();
-    classicSudoku(int x);
+    classicSudoku(int size);
     ~classicSudoku();
 private:
     int size;
@@ -13,8 +15,7 @@ private:
     int difficulty;
     void play();
     static void solver();
-    //time_t start, end;
-    //double solveTime;
+    friend class game;
 };
 
 

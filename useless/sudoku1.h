@@ -1,7 +1,7 @@
 #ifndef SUDOKU_SUDOKU1_H
 #define SUDOKU_SUDOKU1_H
 
-#include "game.h"
+#include "../game.h"
 
 class sudoku1
 {

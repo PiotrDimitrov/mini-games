@@ -297,3 +297,7 @@ char sudoku::defineSymbol(int x) {
     }
     return '?';
 }
+
+void sudoku::clear() {
+
+}
