@@ -105,8 +105,9 @@ void classicSudoku::solver() {
             if (!userSudoku.safeCell(i ,j)){std::cout << "Your table is not valid\n"; return;}
         }
     }
-    userSudoku.construct();
+    userSudoku.fill(0 , 0);
     userSudoku.show();
 }
+
 
 

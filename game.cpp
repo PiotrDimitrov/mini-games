@@ -107,9 +107,7 @@ void game::launch() {
             else if (submode == 15){
                 classicSudoku::solver();
             }
-            else if () {
 
-            }
     }
 }
 
