@@ -72,6 +72,7 @@ void multidoku::play() {
             }
         }
     }
+    print();
     std::cout << "Fill numbers in table in format: row column number (integers)" << std::endl;
     int r, c, n;
     int errors = 0;
@@ -79,24 +80,26 @@ void multidoku::play() {
     time_t start, end;
     time(&start);
     while (empty > 0) {
-        std::cin >> input;
-        if (input == "Quit" || input == "quit") { return; }
-        r = int(input[0] - '0');
-        c = int(input[2] - '0');
-        n = int(input[4] - '0');
+//        std::cin >> input;
+//        if (input == "Quit" || input == "quit") { return; }
+//        r = int(input[0] - '0');
+//        c = int(input[2] - '0');
+//        n = int(input[4] - '0');
+        std::cin >> r >> c >> n;
         r--;
         c--;
         if (r > 3 * (number + 2) || c > 3 * (number + 2) || r < 0 || c < 0 || n < 1 || n > 9) {
             std::cout << "Invalid input" << std::endl;
             continue;
         }
-        int n = 0;
-        if (r >= 9 && r <= 11 && c >= 9 && c <= 11) {n = 1; c-=3; r-=3;}
-        else if (r >= 12 && r <= 14 && c >= 12 && c <= 14) {n = 2; c-=6; r-=6;}
-        if (tables[n].table[r][c] > 0) {std::cout << "Cell isn't empty\n"; continue;}
-        if (tables[n].table[r][c] != -1*n) {std::cout << "Wrong!" << std::endl; errors++; continue;}
+        if ( n == -100 ) { return;}
+        int num = 0;
+        if ((r >= 9 && r <= 11) || (c >= 9 && c <= 11)) { num = 1; c-=3; r-=3;}
+        else if (r >= 12 && r <= 14 && c >= 12 && c <= 14) { num = 2; c-=6; r-=6;}
+        if (tables[num].table[r][c] > 0) {std::cout << "Cell isn't empty\n"; continue;}
+        if (tables[num].table[r][c] != -1 * n) {std::cout << "Wrong!" << tables[num].table[r][c] << std::endl; errors++; continue;}
         else {
-            puzzleCell(r, c, n, empty);
+            puzzleCell(r, c, num, empty);
         }
         print();
     }
@@ -111,7 +114,7 @@ void multidoku::puzzle() {
 for (int i = 0; i < number - 1; i++){
     tables[i].puzzle(1);
 }
-tables[number - 1].puzzle(4);
+tables[number - 1].puzzle(1);
     for (int n = 0; n < number-1; n++){
         for (int i = 0; i < 9; i++){
             for (int j = 0; j < 9; j++){
@@ -134,9 +137,12 @@ void multidoku::setCell(int i, int j, int value, int num) {
 }
 
 void multidoku::puzzleCell(int i, int j, int num, int& emp) {
+    if (tables[num].table[i][j] >= 0) { return;}
     tables[num].table[i][j] *= (-1); emp--;
-    if (j-3 >= 0 && i-3 >= 0 && num+1 < number) { puzzleCell(i-3, j-3, num+1, emp);}
-    if (i+3 < 9 && j+3 < 9 && num-1 >= 0) {puzzleCell(i+3, j+3, num-1, emp);}
+    if (j-3 >= 0 && i-3 >= 0 && num+1 < number && tables[num+1].table[i-3][j-3] < 0)
+    { puzzleCell(i-3, j-3, num+1, emp);}
+    if (i+3 < 9 && j+3 < 9 && num-1 >= 0 && tables[num-1].table[i+3][j+3] < 0)
+    {puzzleCell(i+3, j+3, num-1, emp);}
 }
 
 

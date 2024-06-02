@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include "games/sudoku/classicSudoku.h"
+#include "games/sudoku/multidoku.h"
 
 game::game() {
 
@@ -107,7 +108,12 @@ void game::launch() {
             else if (submode == 15){
                 classicSudoku::solver();
             }
-
+        case 2:
+            if (8 <= submode && submode <= 9){
+                multidoku mdk(submode % 8 + 2);
+                mdk.puzzle();
+                mdk.play();
+            }
     }
 }
 

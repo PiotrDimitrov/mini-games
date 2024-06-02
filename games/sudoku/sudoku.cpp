@@ -262,7 +262,8 @@ int *sudoku::randomSet() {
 
 char sudoku::defineSymbol(int x) {
     if (x < -9) {return '*';}
-    if (x <= 0) {return '_';}
+    if (x < 0) {return '_';}
+    if (x == 0) {return 'o';}
     if (x <= 9) {return char('0' + x);}
     switch (x) {
         case 10:

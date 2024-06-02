@@ -5,10 +5,10 @@
 #include "games/sudoku/multidoku.h"
 
 int main() {
-//game newGame;   //create game instance to start game
-//newGame.defineMode();
-//newGame.defineSubMode();
-//newGame.launch();
+game newGame;   //create game instance to start game
+newGame.defineMode();
+newGame.defineSubMode();
+newGame.launch();
 
 //sudoku first;
 //first.construct();
@@ -19,9 +19,9 @@ int main() {
 //second.fill(0,0);
 //second.show();
 
-multidoku m(3);
-m.puzzle();
-m.print();
+//multidoku m(3);
+//m.puzzle();
+//m.print();
 }
 
 
