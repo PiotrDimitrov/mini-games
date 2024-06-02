@@ -19,11 +19,9 @@ int main() {
 //second.fill(0,0);
 //second.show();
 
-multidoku m(4);
-m.tables[0].show();
-m.tables[1].show();
-m.tables[2].show();
-    m.tables[3].show();
+multidoku m(3);
+m.puzzle();
+m.print();
 }
 
 

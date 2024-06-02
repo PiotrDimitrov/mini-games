@@ -111,6 +111,9 @@ int sudoku::puzzle(int difficulty) {
             difficulty = 180;
             maxEmpRow = maxEmpCol = 12;
             break;
+        case 8:
+            difficulty = 62;
+            maxEmpRow = maxEmpCol = 8;
     }
     while (difficulty > 0 && stop < 250000) {
         stop++;
@@ -259,7 +262,7 @@ int *sudoku::randomSet() {
 
 char sudoku::defineSymbol(int x) {
     if (x < -9) {return '*';}
-    if (x <= 0) {return ' ';}
+    if (x <= 0) {return '_';}
     if (x <= 9) {return char('0' + x);}
     switch (x) {
         case 10:

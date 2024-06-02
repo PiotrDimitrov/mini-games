@@ -11,6 +11,8 @@ public:
     multidoku(int number);
     ~multidoku();
     void show();
+    void print();
+
 private:
 public:
     int number;
@@ -19,10 +21,12 @@ public:
     void puzzle();
     friend class game;
     void setCell(int i, int j, int value, int num);
-    void puzzleCell(int i, int j, int num);
+    void puzzleCell(int i, int j, int num, int& emp);
     sudoku first;
     sudoku second;
     sudoku third;
+    void printTwo();
+    void printThree();
 };
 
 
