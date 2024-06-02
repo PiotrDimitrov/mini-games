@@ -9,6 +9,7 @@ public:
     classicSudoku();
     classicSudoku(int size);
     ~classicSudoku();
+    void show();
 private:
     int size;
     sudoku* sdk;

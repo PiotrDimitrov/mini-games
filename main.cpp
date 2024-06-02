@@ -1,8 +1,33 @@
 #include "useless/sudoku1.h"
 #include "game.h"
 #include <windows.h>
+#include "games/sudoku/sudoku.h"
+#include "games/sudoku/multidoku.h"
 
 int main() {
+//game newGame;   //create game instance to start game
+//newGame.defineMode();
+//newGame.defineSubMode();
+//newGame.launch();
+
+//sudoku first;
+//first.construct();
+//first.show();
+//std::vector<int> vec = {-1, -1, -1, -1, 0, 1, -1, 3, 4};
+//sudoku second(first, vec);
+//second.show();
+//second.fill(0,0);
+//second.show();
+
+multidoku m(3);
+m.tables[0].show();
+m.tables[1].show();
+m.tables[2].show();
+}
+
+
+
+
 //    std::cout << " I want to be nice today!" << std::endl;
 //    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 //    int k;
@@ -12,9 +37,3 @@ int main() {
 //        SetConsoleTextAttribute(hConsole, k);
 //        std::cout << k << " I want to be nice today!" << std::endl;
 //    }
-
-game newGame;   //create game instance to start game
-newGame.defineMode();
-newGame.defineSubMode();
-newGame.launch();
-}

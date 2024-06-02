@@ -14,4 +14,6 @@ add_executable(
         games/sudoku/sudoku.h
         games/sudoku/sudoku.cpp
         games/sudoku/classicSudoku.h
-        games/sudoku/classicSudoku.cpp)
+        games/sudoku/classicSudoku.cpp
+        games/sudoku/multidoku.h
+        games/sudoku/multidoku.cpp)

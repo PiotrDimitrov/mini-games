@@ -45,14 +45,20 @@ sudoku::sudoku(const sudoku &other, std::vector<int> vec) {
     for (int i = 0; i < fullSize; i++)
     {
         table[i] = new int[fullSize];
+        for (int j = 0; j < fullSize; j++){
+            table[i][j] = 0;
+        }
     }
     int index = 0;
     for (auto e : vec){
-        if (e == 0) {continue;}
+        if (e < 0) {index++; continue;}
         for (int i = 0; i < secSize; i++){
             for (int j = 0; j < secSize; j++){
-                table[i + (index/secSize) * secSize][j + (index%secSize) * secSize]
-                = other.table[i + (e/secSize) * secSize][j + (e%secSize) * secSize];
+                int otherRow = i + (index/secSize) * secSize;
+                int otherCol = j + (index%secSize) * secSize;
+                int thisRow = i + (e/secSize) * secSize;
+                int thisCol = j + (e%secSize) * secSize;
+                table[thisRow][thisCol] = other.table[otherRow][otherCol];
             }
         }
         index++;
@@ -65,31 +71,6 @@ sudoku::~sudoku() {
         delete [] table[i];
     }
     delete [] table;
-}
-
-void sudoku::show() {
-    char nextSymbol;
-    for (int i = 0; i < 4*fullSize+4; i++){std::cout << "_";}
-    std::cout << std::endl;
-    for (int i = 0; i < fullSize; i++)
-    {
-        for (int j = 0; j < fullSize; j++) {
-            //if (table[i][j] <= 0) { nextSymbol = ' '; }
-            //else { nextSymbol = char(table[i][j] + 48); }
-            nextSymbol = defineSymbol(table[i][j]);
-            if (j % secSize == secSize-1) {
-                std::cout << nextSymbol << "  |  ";
-            } else {
-                std::cout << nextSymbol << "   ";
-            }
-        }
-        std::cout << std::endl;
-        if (i % secSize == secSize-1) {
-            for (int i = 0; i < 4*fullSize+4; i++){std::cout << "_";}
-            std::cout << std::endl;
-        }
-        std::cout << std::endl;
-    }
 }
 
 int sudoku::puzzle(int difficulty) {
@@ -169,7 +150,7 @@ void sudoku::diagonals() {
 bool sudoku::fill(int i, int j) {
     if (i == fullSize-1 && j == fullSize) {return true;}
     if (j == fullSize) { j =  0; i++; }
-    if (table[i][j] > 0) {return fill(i, j+1);}
+    if (table[i][j] > 0 && table[i][j] <= 9) {return fill(i, j+1);}
     int step = rand () % fullSize + 1;
     for (int it = 1; it <= fullSize; it++)
     {
@@ -277,6 +258,7 @@ int *sudoku::randomSet() {
 }
 
 char sudoku::defineSymbol(int x) {
+    if (x < -9) {return '*';}
     if (x <= 0) {return ' ';}
     if (x <= 9) {return char('0' + x);}
     switch (x) {
@@ -300,4 +282,27 @@ char sudoku::defineSymbol(int x) {
 
 void sudoku::clear() {
 
+}
+
+void sudoku::show() {
+    char nextSymbol;
+    for (int i = 0; i < 4*fullSize+4; i++){std::cout << "_";}
+    std::cout << std::endl;
+    for (int i = 0; i < fullSize; i++)
+    {
+        for (int j = 0; j < fullSize; j++) {
+            nextSymbol = defineSymbol(table[i][j]);
+            if (j % secSize == secSize-1) {
+                std::cout << nextSymbol << "  |  ";
+            } else {
+                std::cout << nextSymbol << "   ";
+            }
+        }
+        std::cout << std::endl;
+        if (i % secSize == secSize-1) {
+            for (int i = 0; i < 4*fullSize+4; i++){std::cout << "_";}
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
 }
