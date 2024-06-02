@@ -1,12 +1,13 @@
 #include "multidoku.h"
+#include <iostream>
 
 multidoku::multidoku() {
     this->number = 2;
     tables.reserve(number);
-    sudoku first;
-    first.construct();
-    tables.push_back(first);
-    this->first = first;
+    sudoku f;
+    f.construct();
+    tables.push_back(f);
+    this->first = f;
     std::vector<int> vec = {-1, -1, -1, -1, 0, 1, -1, 3, 4};
     for (int i = 1; i < number; i++){
         sudoku temp(tables[i-1], vec);
@@ -39,6 +40,26 @@ multidoku::~multidoku() {
 }
 
 void multidoku::show() {
+    char next;
+    int n = 0;
+    std::string tab = " ";
+    for (int i = 0; i < 3*(number+2); i++){
+        if (i % 9 == 0 && i != 0) {tab += "      ";}
+        for (int j = 0; j < 9; j++){
+            std::cout << tables[n].table[i][j];
+        }
+        if (i >= 3 && i < 3*(number+2)-3){
+            for (int j = 0; j < 9; j++){
+                std::cout << tables[n].table[i][j];
+            }
+        }
+        if (i >= 6 && i < 3*(number+2)-6){
+            for (int j = 0; j < 9; j++){
+                std::cout << tables[n].table[i][j];
+            }
+        }
+        std::cout << std::endl;
+    }
 
 }
 
